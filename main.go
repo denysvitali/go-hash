@@ -1,9 +1,8 @@
 package main
 
 import (
-	"encoding/json"
 	"github.com/gorilla/mux"
-	"go-hash/pwhash"
+	"github.com/denysvitali/go-hash/pwhash"
 	"log"
 	"net/http"
 )
@@ -36,7 +35,5 @@ func HashIndex(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
-	if err := json.NewEncoder(w).Encode(hash); err != nil {
-		panic(err)
-	}
+  w.Write([]byte(hash))
 }
